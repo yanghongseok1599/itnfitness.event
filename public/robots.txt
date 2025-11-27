@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://itnfitness-newyear-event.vercel.app
+
+# Sitemaps
+Sitemap: https://itnfitness-newyear-event.vercel.app/sitemap.xml

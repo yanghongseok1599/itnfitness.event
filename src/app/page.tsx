@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import {
   FiPhone,
@@ -22,6 +23,18 @@ export default function Home() {
     <main className="min-h-screen bg-[#0a0a0a] text-white overflow-x-hidden">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center bg-pattern">
+        {/* 배경 동영상 */}
+        <div className="absolute inset-0 overflow-hidden">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute w-full h-full object-cover opacity-40"
+          >
+            <source src="/itnm.mp4" type="video/mp4" />
+          </video>
+        </div>
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80" />
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-20 left-10 w-72 h-72 bg-green-500 rounded-full filter blur-[100px]" />
@@ -69,13 +82,13 @@ export default function Home() {
                 혜택 보러가기
               </motion.a>
               <motion.a
-                href="tel:033-535-7987"
+                href="tel:010-9745-2246"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="px-8 py-4 border-2 border-green-500 text-green-400 font-bold rounded-full text-lg hover:bg-green-500/10 transition-all flex items-center justify-center gap-2"
               >
                 <FiPhone />
-                033-535-7987
+                010-9745-2246
               </motion.a>
             </div>
           </motion.div>
@@ -128,7 +141,10 @@ export default function Home() {
               <div className="space-y-4 mb-6">
                 <div className="flex items-center justify-between p-4 bg-zinc-700/50 rounded-xl">
                   <span className="text-zinc-300">1인 등록 시</span>
-                  <span className="text-xl font-bold text-white">월 50,000원</span>
+                  <div className="text-right">
+                    <span className="text-xl font-bold text-white">월 50,000원</span>
+                    <span className="text-zinc-500 text-xs ml-1">(부가세 별도)</span>
+                  </div>
                 </div>
                 <div className="flex items-center justify-between p-4 bg-green-500/20 border border-green-500/50 rounded-xl">
                   <div>
@@ -136,7 +152,8 @@ export default function Home() {
                     <span className="ml-2 px-2 py-0.5 bg-green-500 text-black text-xs font-bold rounded">추천</span>
                   </div>
                   <div className="text-right">
-                    <span className="text-3xl md:text-4xl font-black text-green-400">월 45,000원</span>
+                    <span className="text-2xl md:text-3xl font-black text-green-400">월 45,000원</span>
+                    <span className="text-zinc-500 text-xs block">(부가세 별도)</span>
                   </div>
                 </div>
               </div>
@@ -158,7 +175,10 @@ export default function Home() {
               <div className="space-y-4 mb-6">
                 <div className="flex items-center justify-between p-4 bg-zinc-700/50 rounded-xl">
                   <span className="text-zinc-300">1인 등록 시</span>
-                  <span className="text-xl font-bold text-white">월 60,000원</span>
+                  <div className="text-right">
+                    <span className="text-xl font-bold text-white">월 60,000원</span>
+                    <span className="text-zinc-500 text-xs ml-1">(부가세 별도)</span>
+                  </div>
                 </div>
                 <div className="flex items-center justify-between p-4 bg-green-500/20 border border-green-500/50 rounded-xl">
                   <div>
@@ -166,7 +186,8 @@ export default function Home() {
                     <span className="ml-2 px-2 py-0.5 bg-green-500 text-black text-xs font-bold rounded">추천</span>
                   </div>
                   <div className="text-right">
-                    <span className="text-3xl md:text-4xl font-black text-green-400">월 55,000원</span>
+                    <span className="text-2xl md:text-3xl font-black text-green-400">월 55,000원</span>
+                    <span className="text-zinc-500 text-xs block">(부가세 별도)</span>
                   </div>
                 </div>
               </div>
@@ -191,9 +212,9 @@ export default function Home() {
               <p className="text-zinc-400 text-xs md:text-sm">PT 체험</p>
             </div>
             <div className="bg-zinc-800/50 border border-zinc-700 rounded-xl p-4 text-center">
-              <span className="text-3xl mb-2 block">⭐</span>
-              <p className="text-green-400 font-bold text-sm md:text-base">네이버 리뷰 작성 시</p>
-              <p className="text-zinc-400 text-xs md:text-sm">7일 연장</p>
+              <span className="text-3xl mb-2 block">🎁</span>
+              <p className="text-green-400 font-bold text-sm md:text-base">미션 달성시</p>
+              <p className="text-zinc-400 text-xs md:text-sm">현금 최대 4만원 추가할인</p>
             </div>
           </motion.div>
 
@@ -312,7 +333,7 @@ export default function Home() {
                 <div>
                   <h4 className="font-bold text-white mb-1">연락처</h4>
                   <p className="text-zinc-400 text-sm">
-                    033-535-7987<br />010-9745-2246
+                    010-9745-2246
                   </p>
                 </div>
               </div>
@@ -344,37 +365,44 @@ export default function Home() {
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="bg-gradient-to-br from-green-500/10 to-yellow-500/10 border border-green-500/30 rounded-3xl p-6 md:p-8"
+              className="bg-gradient-to-br from-green-500/10 to-yellow-500/10 border border-green-500/30 rounded-3xl overflow-hidden"
             >
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center">
-                  <FiAward className="text-4xl text-green-400" />
-                </div>
-                <div>
-                  <span className="text-green-400 text-sm font-medium">대표 트레이너</span>
-                  <h3 className="text-2xl font-bold text-white">체형교정 전문가</h3>
-                </div>
+              {/* 트레이너 이미지 */}
+              <div className="w-full aspect-[4/3] md:aspect-[16/10] relative bg-zinc-900">
+                <Image
+                  src="/002.png"
+                  alt="대표 트레이너"
+                  fill
+                  className="object-contain"
+                />
               </div>
-              <div className="space-y-3">
-                <div className="flex items-center gap-3">
-                  <FiCheck className="text-green-400 flex-shrink-0" />
-                  <span className="text-zinc-300">체형교정사 자격 보유</span>
+              <div className="p-6 md:p-8">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center">
+                    <FiAward className="text-3xl text-green-400" />
+                  </div>
+                  <div>
+                    <span className="text-green-400 text-sm font-medium">대표 트레이너</span>
+                    <h3 className="text-2xl font-bold text-white">체형교정 전문가</h3>
+                  </div>
                 </div>
-                <div className="flex items-center gap-3">
-                  <FiCheck className="text-green-400 flex-shrink-0" />
-                  <span className="text-zinc-300">문체부 인증 전문센터 운영</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <FiCheck className="text-green-400 flex-shrink-0" />
-                  <span className="text-zinc-300">10년+ 피트니스 경력</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <FiCheck className="text-green-400 flex-shrink-0" />
-                  <span className="text-zinc-300">재활 운동 전문</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <FiCheck className="text-green-400 flex-shrink-0" />
-                  <span className="text-zinc-300">1:1 맞춤 프로그램 설계</span>
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3">
+                    <FiCheck className="text-green-400 flex-shrink-0" />
+                    <span className="text-zinc-300">국회의원상 수상 재활 트레이너</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <FiCheck className="text-green-400 flex-shrink-0" />
+                    <span className="text-zinc-300">생활체육지도자 연수교수</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <FiCheck className="text-green-400 flex-shrink-0" />
+                    <span className="text-zinc-300">정형외과 인증 전문센터</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <FiCheck className="text-green-400 flex-shrink-0" />
+                    <span className="text-zinc-300">1:1 맞춤 프로그램 설계</span>
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -423,6 +451,27 @@ export default function Home() {
               </div>
             </motion.div>
           </div>
+
+          {/* 국공기관 및 연예인 선택 */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-12 text-center"
+          >
+            <p className="text-lg md:text-xl font-bold text-white mb-6">
+              국·공기관과 연예인들이 선택한 <span className="gradient-text">운동 전문기관</span>
+            </p>
+            <div className="relative w-full">
+              <Image
+                src="/itn.png"
+                alt="국공기관 및 연예인 선택"
+                width={1200}
+                height={600}
+                className="w-full h-auto rounded-2xl"
+              />
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -443,6 +492,12 @@ export default function Home() {
               미션 완료하고 추가 할인까지!
             </p>
 
+            {/* 카운트다운 타이머 */}
+            <div className="mb-10">
+              <p className="text-zinc-400 mb-4">이벤트 종료까지</p>
+              <CountdownTimer />
+            </div>
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.a
                 href="https://pf.kakao.com/_nxkQtn"
@@ -456,7 +511,7 @@ export default function Home() {
                 카카오톡 상담하기
               </motion.a>
               <motion.a
-                href="tel:033-535-7987"
+                href="tel:010-9745-2246"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="px-8 py-4 bg-green-500 hover:bg-green-400 text-black font-bold rounded-full text-lg transition-all flex items-center justify-center gap-2"
@@ -487,7 +542,7 @@ export default function Home() {
             강원도 동해시 효자남길 33-34 이아빌딩 2층 201호
           </p>
           <p className="text-zinc-400 text-sm mb-4">
-            전화: 033-535-7987 | 010-9745-2246
+            전화: 010-9745-2246
           </p>
           <p className="text-zinc-500 text-xs">
             2025 ITN피트니스. All rights reserved.
