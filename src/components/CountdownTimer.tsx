@@ -48,34 +48,26 @@ export default function CountdownTimer() {
   ];
 
   return (
-    <div className="flex gap-2 sm:gap-3 md:gap-5 justify-center">
+    <div className="flex gap-2 md:gap-4 justify-center">
       {timeUnits.map((unit, index) => (
         <motion.div
           key={unit.label}
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ delay: index * 0.1, type: "spring", stiffness: 200 }}
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ delay: index * 0.1 }}
           className="flex flex-col items-center"
         >
-          <motion.div
-            whileHover={{
-              borderColor: "rgba(201,169,110,0.6)",
-              boxShadow: "0 0 25px rgba(201,169,110,0.15)",
-              y: -2,
-            }}
-            className="bg-[#1A1A1A] border border-[rgba(201,169,110,0.25)] rounded-xl p-2 sm:p-3 md:p-5 min-w-[44px] sm:min-w-[56px] md:min-w-[90px] transition-all"
-          >
+          <div className="bg-zinc-800 border border-green-500/30 rounded-lg p-2 md:p-4 min-w-[50px] md:min-w-[80px]">
             <motion.span
               key={unit.value}
-              initial={{ y: -15, opacity: 0, scale: 0.8 }}
-              animate={{ y: 0, opacity: 1, scale: 1 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="font-display text-lg sm:text-2xl md:text-5xl font-semibold text-[#C9A96E] block text-center text-shadow-gold"
+              initial={{ y: -10, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              className="text-xl md:text-4xl font-bold text-green-400 block text-center"
             >
               {String(unit.value).padStart(2, "0")}
             </motion.span>
-          </motion.div>
-          <span className="text-[10px] sm:text-xs md:text-sm text-[#A0A09A] mt-2 tracking-premium uppercase">
+          </div>
+          <span className="text-xs md:text-sm text-zinc-400 mt-1">
             {unit.label}
           </span>
         </motion.div>

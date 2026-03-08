@@ -1,23 +1,11 @@
 import type { Metadata } from "next";
-import { Noto_Sans_KR, Noto_Serif_KR, Cormorant_Garamond } from "next/font/google";
+import { Noto_Sans_KR } from "next/font/google";
 import "./globals.css";
 
 const notoSansKr = Noto_Sans_KR({
   variable: "--font-noto-sans-kr",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-});
-
-const notoSerifKr = Noto_Serif_KR({
-  variable: "--font-noto-serif-kr",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-});
-
-const cormorantGaramond = Cormorant_Garamond({
-  variable: "--font-cormorant",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
 const siteUrl = "https://itnfitness-newyear-event.vercel.app";
@@ -100,9 +88,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body
-        className={`${notoSansKr.variable} ${notoSerifKr.variable} ${cormorantGaramond.variable} antialiased bg-[#0A0A0A]`}
-      >
+      <body className={`${notoSansKr.variable} antialiased bg-[#0a0a0a]`}>
         {children}
       </body>
     </html>
