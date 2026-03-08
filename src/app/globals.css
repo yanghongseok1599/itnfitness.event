@@ -1,45 +1,112 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0a0a0a;
-  --foreground: #ededed;
-  --primary: #22c55e;
-  --primary-dark: #16a34a;
-  --accent: #facc15;
+  --background: #0A0A0A;
+  --foreground: #F5F5F0;
+  --surface-1: #111111;
+  --surface-2: #1A1A1A;
+  --gold: #C9A96E;
+  --gold-dark: #8B7355;
+  --gold-light: #E8D5A3;
+  --text-primary: #F5F5F0;
+  --text-secondary: #A0A09A;
+  --border-gold: rgba(201, 169, 110, 0.2);
+  --border-gold-hover: rgba(201, 169, 110, 0.6);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-noto-sans-kr);
+  --font-serif: var(--font-noto-serif-kr);
+  --font-display: var(--font-cormorant);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+  font-family: var(--font-noto-sans-kr), 'Noto Sans KR', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-weight: 300;
 }
 
 html {
   scroll-behavior: smooth;
 }
 
+/* 프리미엄 스크롤바 */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #1a1a1a;
+  background: #0A0A0A;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #22c55e;
-  border-radius: 4px;
+  background: linear-gradient(180deg, #C9A96E, #8B7355);
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #16a34a;
+  background: linear-gradient(180deg, #E8D5A3, #C9A96E);
+}
+
+/* ===== 폰트 클래스 ===== */
+.font-serif-kr {
+  font-family: var(--font-noto-serif-kr), 'Noto Serif KR', serif;
+}
+
+.font-display {
+  font-family: var(--font-cormorant), 'Cormorant Garamond', serif;
+}
+
+/* ===== 골드 그라디언트 텍스트 ===== */
+.gradient-text {
+  background: linear-gradient(135deg, #C9A96E 0%, #E8D5A3 50%, #C9A96E 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-shimmer {
+  background: linear-gradient(90deg, #C9A96E 0%, #E8D5A3 25%, #C9A96E 50%, #E8D5A3 75%, #C9A96E 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+/* ===== 키프레임 애니메이션 ===== */
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-gold {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201, 169, 110, 0.6); }
+  50% { box-shadow: 0 0 0 12px rgba(201, 169, 110, 0); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes rotate-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes border-dance {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 @keyframes checkmark {
@@ -48,54 +115,273 @@ html {
   100% { transform: scale(1); }
 }
 
-.mission-complete {
-  animation: checkmark 0.3s ease-in-out;
+@keyframes particle-float {
+  0%, 100% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  50% { transform: translateY(-60px) translateX(20px) scale(0.5); }
 }
 
-.gradient-text {
-  background: linear-gradient(135deg, #22c55e 0%, #facc15 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+@keyframes shine {
+  0% { left: -100%; }
+  100% { left: 200%; }
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+@keyframes text-reveal {
+  0% { clip-path: inset(0 100% 0 0); }
+  100% { clip-path: inset(0 0 0 0); }
 }
 
+/* ===== 유틸리티 클래스 ===== */
 .float-animation {
   animation: float 3s ease-in-out infinite;
 }
 
-.glow-green {
-  box-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+.mission-complete {
+  animation: checkmark 0.3s ease-in-out;
 }
 
-.glow-yellow {
-  box-shadow: 0 0 20px rgba(250, 204, 21, 0.5);
+.pulse-gold {
+  animation: pulse-gold 2s infinite;
 }
 
+/* ===== 골드 글로우 효과 ===== */
+.glow-gold {
+  box-shadow: 0 0 30px rgba(201, 169, 110, 0.4), 0 0 60px rgba(201, 169, 110, 0.1);
+}
+
+.glow-gold-sm {
+  box-shadow: 0 0 15px rgba(201, 169, 110, 0.3);
+}
+
+.glow-gold-intense {
+  box-shadow: 0 0 40px rgba(201, 169, 110, 0.5), 0 0 80px rgba(201, 169, 110, 0.2), 0 0 120px rgba(201, 169, 110, 0.1);
+}
+
+/* ===== 카드 호버 효과 ===== */
 .card-hover {
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(201, 169, 110, 0.05), transparent);
+  transition: left 0.6s ease;
+  z-index: 1;
+  pointer-events: none;
 }
 
 .card-hover:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(34, 197, 94, 0.2);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(201, 169, 110, 0.15), 0 0 30px rgba(201, 169, 110, 0.08);
+  border-color: rgba(201, 169, 110, 0.5);
 }
 
-@keyframes pulse-green {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
-  50% { box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
+.card-hover:hover::before {
+  left: 100%;
 }
 
-.pulse-green {
-  animation: pulse-green 2s infinite;
+/* ===== 프리미엄 버튼 효과 ===== */
+.btn-gold {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
 }
 
+.btn-gold::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  transform: scale(0);
+  transition: transform 0.5s ease;
+}
+
+.btn-gold:hover::after {
+  transform: scale(1);
+}
+
+.btn-gold:hover {
+  box-shadow: 0 0 30px rgba(201, 169, 110, 0.4);
+}
+
+/* ===== 골드 보더 버튼 ===== */
+.btn-gold-outline {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(201, 169, 110, 0.5);
+  border-radius: 0.75rem;
+  transition: all 0.4s ease;
+}
+
+.btn-gold-outline::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #C9A96E, #E8D5A3);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+}
+
+.btn-gold-outline:hover::before {
+  opacity: 1;
+}
+
+.btn-gold-outline:hover {
+  color: #0A0A0A;
+  border-color: #C9A96E;
+  box-shadow: 0 0 25px rgba(201, 169, 110, 0.3);
+}
+
+/* ===== 샤인 효과 ===== */
+.shine-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.shine-effect::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(201, 169, 110, 0.15), transparent);
+  animation: shine 4s ease-in-out infinite;
+}
+
+/* ===== 배경 패턴 ===== */
 .bg-pattern {
   background-image:
-    radial-gradient(circle at 20% 50%, rgba(34, 197, 94, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 50%, rgba(250, 204, 21, 0.1) 0%, transparent 50%);
+    radial-gradient(circle at 20% 50%, rgba(201, 169, 110, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 50%, rgba(139, 115, 85, 0.06) 0%, transparent 50%);
+}
+
+.bg-pattern-grid {
+  background-image:
+    linear-gradient(rgba(201, 169, 110, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201, 169, 110, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ===== 골드 구분선 ===== */
+.divider-gold {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201, 169, 110, 0.4), transparent);
+}
+
+.divider-gold-thick {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #C9A96E, transparent);
+}
+
+/* ===== 텍스트 반응형 ===== */
+.text-responsive-hero {
+  font-size: clamp(2rem, 9vw, 5rem);
+}
+
+.text-responsive-hero-sub {
+  font-size: clamp(1.5rem, 6vw, 3.75rem);
+}
+
+.text-responsive-section {
+  font-size: clamp(1.5rem, 5vw, 3rem);
+}
+
+.text-responsive-body {
+  font-size: clamp(0.875rem, 3.5vw, 1.25rem);
+}
+
+.text-responsive-small {
+  font-size: clamp(0.75rem, 3vw, 1rem);
+}
+
+/* ===== 호버 시 골드 밑줄 ===== */
+.gold-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.gold-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #C9A96E;
+  transition: width 0.4s ease;
+}
+
+.gold-underline:hover::after {
+  width: 100%;
+}
+
+/* ===== 마그네틱 호버 아이콘 ===== */
+.icon-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.icon-hover:hover {
+  transform: scale(1.15) rotate(5deg);
+  color: #C9A96E;
+  filter: drop-shadow(0 0 8px rgba(201, 169, 110, 0.5));
+}
+
+/* ===== 글래스모피즘 카드 ===== */
+.glass-card {
+  background: rgba(26, 26, 26, 0.7);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(201, 169, 110, 0.15);
+}
+
+/* ===== 파티클 / 스파클 데코 ===== */
+.sparkle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #C9A96E;
+  border-radius: 50%;
+  animation: particle-float 3s ease-in-out infinite;
+}
+
+/* ===== 골드 텍스트 섀도우 ===== */
+.text-shadow-gold {
+  text-shadow: 0 0 20px rgba(201, 169, 110, 0.3), 0 0 40px rgba(201, 169, 110, 0.1);
+}
+
+/* ===== 레터 스페이싱 유틸 ===== */
+.tracking-premium {
+  letter-spacing: 0.15em;
+}
+
+.tracking-ultra {
+  letter-spacing: 0.3em;
+}
+
+/* ===== 작은 모바일 (375px 이하) ===== */
+@media (max-width: 374px) {
+  .xs-text-xs { font-size: 0.75rem; }
+  .xs-text-sm { font-size: 0.8rem; }
+  .xs-text-base { font-size: 0.875rem; }
+  .xs-text-lg { font-size: 1rem; }
+  .xs-text-xl { font-size: 1.125rem; }
+  .xs-text-2xl { font-size: 1.25rem; }
+  .xs-text-3xl { font-size: 1.5rem; }
+  .xs-p-2 { padding: 0.5rem; }
+  .xs-p-3 { padding: 0.75rem; }
+  .xs-px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }
+  .xs-gap-1 { gap: 0.25rem; }
+  .xs-gap-2 { gap: 0.5rem; }
 }

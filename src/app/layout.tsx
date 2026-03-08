@@ -1,11 +1,23 @@
 import type { Metadata } from "next";
-import { Noto_Sans_KR } from "next/font/google";
+import { Noto_Sans_KR, Noto_Serif_KR, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 
 const notoSansKr = Noto_Sans_KR({
   variable: "--font-noto-sans-kr",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
+  weight: ["300", "400", "500", "600", "700"],
+});
+
+const notoSerifKr = Noto_Serif_KR({
+  variable: "--font-noto-serif-kr",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+});
+
+const cormorantGaramond = Cormorant_Garamond({
+  variable: "--font-cormorant",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 const siteUrl = "https://itnfitness-newyear-event.vercel.app";
@@ -78,9 +90,7 @@ export const metadata: Metadata = {
     apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
   },
   category: "fitness",
-  verification: {
-    // 필요한 경우: google: "구글서치콘솔코드"
-  },
+  verification: {},
 };
 
 export default function RootLayout({
@@ -90,7 +100,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className={`${notoSansKr.variable} antialiased bg-[#0a0a0a]`}>
+      <body
+        className={`${notoSansKr.variable} ${notoSerifKr.variable} ${cormorantGaramond.variable} antialiased bg-[#0A0A0A]`}
+      >
         {children}
       </body>
     </html>
